@@ -1,20 +1,19 @@
-terraform {
-  required_version = ">= 1.9, < 2.0"
-
-  required_providers {
-    azapi = {
-      source  = "Azure/azapi"
-      version = "~> 2.12"
-    }
-  }
+resource "random_id" "suffix" {
+  byte_length = 4
 }
 
-provider "azapi" {}
+resource "azapi_resource" "resource_group" {
+  location               = var.location
+  name                   = "rg-avm-signalr-${random_id.suffix.hex}"
+  type                   = "Microsoft.Resources/resourceGroups@2024-11-01"
+  response_export_values = []
+}
 
-module "resource_group" {
+module "signalr" {
   source = "../../"
 
-  location         = "westus3"
-  name             = "rg-avm-template-example"
+  location         = var.location
+  name             = "sigr-avm-${random_id.suffix.hex}"
+  parent_id        = azapi_resource.resource_group.id
   enable_telemetry = var.enable_telemetry
 }

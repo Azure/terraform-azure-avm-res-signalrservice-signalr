@@ -1,3 +1,10 @@
+variable "location" {
+  type        = string
+  default     = "westus3"
+  description = "The Azure region in which the example resources will be created."
+  nullable    = false
+}
+
 variable "enable_telemetry" {
   type        = bool
   default     = true

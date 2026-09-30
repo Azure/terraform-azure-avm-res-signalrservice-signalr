@@ -3,6 +3,6 @@
   "moduleDisplayName": "SignalR Service SignalR",
   "moduleDescription": "AVM Resource Module for SignalR Service SignalR",
   "canonicalType": "Microsoft.SignalRService/signalR",
-  "owners": [],
+  "owners": ["paul8989"],
   "telemetryIdPrefix": "46d3xtrf.res.934827c"
 }
